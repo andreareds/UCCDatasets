@@ -1,0 +1,73 @@
+﻿@model UCC_Datasets.Models.Dataset
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Dataset</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea type="text" asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Available" class="control-label"></label>
+                <input id="Available" type="checkbox" value="true" asp-for="Available" class="form-control" checked />
+                <input id="Available" type="hidden" value="false" />
+                <span asp-validation-for="Available" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="file">
+
+                <label><input type="radio" id="URL" name="file" value="URL" checked />URL</label>
+                <label><input type="radio" id="uploadfile" name="file" value="Upload File" />Upload File</label>
+            </div>
+
+            <div class="form-group" id="texturl">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+            </div>
+
+            <div class="form-group" id="upload">
+                <label> Upload File</label>
+                <input type="file" id="fileuploaded" name="fileuploaded" class="form-control" />
+            </div>
+            <div class="form-group" id="keywords">
+                <label class="control-label">Keywords</label>
+                @Html.ListBox("ItemList")
+            </div>
+            <div class="form-group" id="othertext">
+                <label class="control-label">Add new keyword</label>
+                @Html.TextBox("NewCategory")
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

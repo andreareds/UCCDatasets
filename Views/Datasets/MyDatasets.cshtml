@@ -1,0 +1,55 @@
+﻿@model IEnumerable<UCC_Datasets.Models.Dataset>
+
+
+@{
+    ViewData["Title"] = "My Datasets";
+}
+
+<h1>My Uploaded Datasets</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Available)
+            </th>
+            <th>
+                Date Creation
+            </th>
+            <th>
+                Last Modified
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModified)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdDataset">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDataset">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDataset">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

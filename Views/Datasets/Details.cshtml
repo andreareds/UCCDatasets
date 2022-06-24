@@ -1,0 +1,76 @@
+﻿@model UCC_Datasets.Models.Dataset
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Dataset</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Available)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Available)
+        </dd>
+        @if (@Model.Available)
+        {
+            @if (@Model.Filepath == null)
+            {
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Url)
+                </dt>
+                <dd class="col-sm-10">
+                    <a href="@Model.Url">@Model.Url</a>
+                </dd>
+            }
+            @if (Model.Filepath != null)              
+            {
+                <dt class="col-sm-2">
+                    Download
+                </dt>
+                <dd class="col-sm-10">
+
+                    <a asp-action="DownloadFile" asp-controller="Datasets" asp-route-id="@Model.IdDataset">Download</a>
+                    
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Filepath)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Filepath)
+                </dd>
+            }
+        }
+            <dt class="col-sm-2">
+                Keywords
+            </dt>
+            <dd class="col-sm-10">
+                @Html.ListBox("ItemList")
+            </dd>
+            <dt class="col-sm-2">
+                Author
+            </dt>
+            <dd class="col-sm-10">
+                <a href="mailto:" + @Html.DisplayFor(model => model.IdUserNavigation.Email)>@Html.DisplayFor(model => model.IdUserNavigation.Email)</a>
+            </dd>
+        </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
